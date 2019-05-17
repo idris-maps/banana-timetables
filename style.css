@@ -1,8 +1,66 @@
 html, body {
-	font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
-	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	font-size: 1rem;
 }
 
 h1 {
 	text-align: center;
+}
+
+/* LIST */
+
+.list {
+	width: 100%;
+}
+
+.list-item {
+	width: 100%;
+}
+
+.list-item > p {
+	padding: 0.5rem;
+}
+
+input.list-item {
+	font-size: 1rem;
+	padding: 0.5rem;
+	width: 98%;
+}
+
+.list-item:focus {
+	background-color: black;
+	color: white;
+}
+
+/* FOOTER */
+
+footer {
+	position: fixed;
+	display: table;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: lightgray;
+	font-weight: bold;
+	font-size: 0.9rem;
+}
+
+.footer-left, .footer-center, .footer-right {
+	display: table-cell;
+	width: 33.3%;
+	padding: 0.5rem;
+}
+
+.footer-left {
+	text-align: left;
+}
+
+.footer-center {
+	text-align: center;
+}
+
+.footer-right {
+	text-align: right;
 }
