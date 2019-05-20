@@ -8,7 +8,8 @@ import {
 const items = [
 	{ type: 'text', label: 'One' },
 	{ type: 'text', label: 'Two' },
-	{ type: 'text', label: 'Three' },
+  { type: 'text', label: 'Three' },
+  { type: 'input' },
 ]
 
 const defaultState = {
