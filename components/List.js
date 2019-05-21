@@ -11,7 +11,7 @@ class TextItem extends Component {
 }
 
 class InputItem extends Component {
-  componentDidMount() { if (this.el && this.props.focused) { this.el.focus() } }
+  componentDidMount() { if (this.el && this.props.focused) { this.el.focus(); this.el.value = '' } }
   componentDidUpdate() { if (this.el && this.props.focused) { this.el.focus() } }
   render() {
     return <input class="list-item" ref={ el => this.el = el } onInput={ this.props.onChange } tabIndex="1"/>

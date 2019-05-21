@@ -2,6 +2,15 @@ import store from './index'
 import {
   PAGE_TO,
 } from '../pages/names'
+import { getStops } from '../utils/db'
+
+const stopToListItem = ({ id, name }) => ({
+  type: 'text',
+  label: name,
+  id,
+})
+
+const input = { type: 'input', onChange: e => setInput(e.target.value) }
 
 export const SET_LIST = 'SET_LIST'
 export const setList = items =>
@@ -18,8 +27,9 @@ export const goToPage = (page, list = []) =>
 export const SET_FROM = 'SET_FROM'
 export const setFromStop = stopId => {
   store.dispatch({ type: SET_FROM, payload: stopId })
-  const { list } = store.getState()
-  goToPage(PAGE_TO, list.filter(d => d.id !== stopId))
+  getStops()
+    .then(stops => stops.map(stopToListItem))
+    .then(stops => goToPage(PAGE_TO, [input, ...stops.filter(d => d.id !== stopId)]))
 }
 
 export const SET_TO = 'SET_TO'
