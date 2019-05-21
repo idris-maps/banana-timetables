@@ -8,9 +8,9 @@ import PickStop from './PickStop'
 
 const Router = ({ page }) => {
   if (page === PAGE_TO) {
-    return <PickStop title="to" />
+    return <PickStop title="TO" />
   }
-  return <PickStop title="From" />
+  return <PickStop title="FROM" />
 }
 
 const mapStateToProps = ({ page }) => ({ page })
