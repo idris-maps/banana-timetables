@@ -2,12 +2,15 @@ import store from './index'
 import {
   setList,
   setFromStop,
+  setToStop,
   goToPage,
 } from './actions'
 import {
   PAGE_FROM,
   LOADING,
   PAGE_CHOOSE_FROM,
+  PAGE_TO,
+  PAGE_CHOOSE_TO,
 } from '../pages/names'
 import {
   searchStop,
@@ -56,10 +59,28 @@ const onEnter = (input, listItem, page) => {
   if (page === PAGE_CHOOSE_FROM) {
     if (listItem && listItem.type === 'text') {
       return addStop(listItem.id, listItem.name)
-        .then(stops => {
-          setList(stops)
-          setFromStop(listItem.id)
-        })
+        .then(() => setFromStop(listItem.id))
+    }
+    return null
+  }
+  if (page === PAGE_TO) {
+    if (listItem && listItem.type === 'input') {
+      goToPage(LOADING)
+      searchStop(input)
+        .then(stops => goToPage(
+          PAGE_CHOOSE_TO,
+          stops.map(d => ({ ...d, type: 'text', label: d.name }))
+        ))
+    }
+    if (listItem && listItem.type === 'text') {
+      return setToStop(listItem.id)
+    }
+    return null
+  }
+  if (page === PAGE_CHOOSE_TO) {
+    if (listItem && listItem.type === 'text') {
+      return addStop(listItem.id, listItem.name)
+        .then(() => setToStop(listItem.id))
     }
     return null
   }
