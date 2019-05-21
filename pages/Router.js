@@ -5,12 +5,14 @@ import {
 } from './names'
 
 import PickStop from './PickStop'
+import Loading from './Loading'
 
 const Router = ({ page }) => {
   if (page === PAGE_TO) {
     return <PickStop title="TO" />
   }
-  return <PickStop title="FROM" />
+  return <Loading />
+  //return <PickStop title="FROM" />
 }
 
 const mapStateToProps = ({ page }) => ({ page })
