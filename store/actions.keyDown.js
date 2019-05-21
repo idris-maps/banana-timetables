@@ -4,7 +4,7 @@ import {
 } from './actions'
 import {
   PAGE_FROM,
-} from './pages'
+} from '../pages/names'
 
 export const SET_LIST_CURRENT = 'SET_LIST_CURRENT'
 

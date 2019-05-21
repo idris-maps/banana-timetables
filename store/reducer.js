@@ -10,7 +10,7 @@ import {
 } from './actions'
 import {
   PAGE_FROM,
-} from './pages'
+} from '../pages/names';
 
 const defaultState = {
   listCurrent: 0,
