@@ -1,10 +1,20 @@
 import store from './index'
 import {
+  setList,
   setFromStop,
+  goToPage,
 } from './actions'
 import {
   PAGE_FROM,
+  LOADING,
+  PAGE_CHOOSE_FROM,
 } from '../pages/names'
+import {
+  searchStop,
+} from '../utils/api'
+import {
+  addStop,
+} from '../utils/db'
 
 export const SET_LIST_CURRENT = 'SET_LIST_CURRENT'
 
@@ -31,10 +41,25 @@ const onUp = (list, current = 0) => {
 const onEnter = (input, listItem, page) => {
   if (page === PAGE_FROM) {
     if (listItem && listItem.type === 'input') {
-      console.log(input)
+      goToPage(LOADING)
+      searchStop(input)
+        .then(stops => goToPage(
+          PAGE_CHOOSE_FROM,
+          stops.map(d => ({ ...d, type: 'text', label: d.name }))
+        ))
     }
     if (listItem && listItem.type === 'text') {
       return setFromStop(listItem.id)
+    }
+    return null
+  }
+  if (page === PAGE_CHOOSE_FROM) {
+    if (listItem && listItem.type === 'text') {
+      return addStop(listItem.id, listItem.name)
+        .then(stops => {
+          setList(stops)
+          setFromStop(listItem.id)
+        })
     }
     return null
   }

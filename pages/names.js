@@ -1,2 +1,5 @@
 export const PAGE_FROM = 'PAGE_FROM'
 export const PAGE_TO = 'PAGE_TO'
+export const LOADING = 'LOADING'
+export const PAGE_CHOOSE_TO = 'PAGE_CHOOSE_TO'
+export const PAGE_CHOOSE_FROM = 'PAGE_CHOOSE_FROM'
