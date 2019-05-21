@@ -1,4 +1,7 @@
 import store from './index'
+import {
+  PAGE_FROM,
+} from './pages'
 
 export const SET_LIST_CURRENT = 'SET_LIST_CURRENT'
 
@@ -21,13 +24,26 @@ const onUp = (list, current = 0) => {
     }
   }
 }
-  
+
+const onEnter = (input, listItem, page) => {
+  if (page === PAGE_FROM) {
+    if (listItem && listItem.type === 'input') {
+      console.log(input)
+    }
+    if (listItem && listItem.type === 'text') {
+      console.log(listItem)
+    }
+    return null
+  }
+  return null
+}
 
 export const onKeyDown = ({ key }) => {
-  const { list, listCurrent } = store.getState()
+  const { list, listCurrent, input, page } = store.getState()
   switch (key) {
     case 'ArrowDown': return onDown(list, listCurrent)
     case 'ArrowUp': return onUp(list, listCurrent)
+    case 'Enter': return onEnter(input, list[listCurrent], page)
     default: return null
   }
 }
