@@ -10,16 +10,10 @@ import {
 import {
   PAGE_FROM,
 } from './pages'
-const items = [
-	{ type: 'text', label: 'One' },
-	{ type: 'text', label: 'Two' },
-  { type: 'text', label: 'Three' },
-  { type: 'input', onChange: e => setInput(e.target.value) },
-]
 
 const defaultState = {
   listCurrent: 0,
-  list: items,
+  list: [],
   input: null,
   page: PAGE_FROM,
 }
@@ -29,7 +23,7 @@ const reducer = (state = defaultState, action) => {
   console.log({ type, payload })
   switch(type) {
     case SET_LIST_CURRENT: return { ...state, listCurrent: payload }
-    case SET_LIST: return { ...state, list }
+    case SET_LIST: return { ...state, list: payload }
     case SET_INPUT: return { ...state, input: payload }
     case SET_PAGE: return {
       ...state,
