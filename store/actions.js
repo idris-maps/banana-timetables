@@ -11,3 +11,11 @@ export const setInput = value =>
 export const SET_PAGE = 'SET_PAGE'
 export const goToPage = (page, list = []) =>
   store.dispatch({ type: SET_PAGE, payload: { page, list } })
+
+export const SET_FROM = 'SET_FROM'
+export const setFromStop = stopId =>
+  store.dispatch({ type: SET_FROM, payload: stopId })
+
+export const SET_TO = 'SET_TO'
+export const setToStop = stopId =>
+  store.dispatch({ type: SET_TO, payload: stopId })

@@ -5,7 +5,8 @@ import {
   SET_LIST,
   SET_INPUT,
   SET_PAGE,
-  setInput,
+  SET_FROM,
+  SET_TO,
 } from './actions'
 import {
   PAGE_FROM,
@@ -32,6 +33,8 @@ const reducer = (state = defaultState, action) => {
       listCurrent: 0,
       input: null,
     }
+    case SET_FROM: return { ...state, from: payload }
+    case SET_TO: return { ...state, to: payload }
     default: return state
   }
 }

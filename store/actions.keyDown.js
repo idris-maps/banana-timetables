@@ -1,5 +1,8 @@
 import store from './index'
 import {
+  setFromStop,
+} from './actions'
+import {
   PAGE_FROM,
 } from './pages'
 
@@ -31,7 +34,7 @@ const onEnter = (input, listItem, page) => {
       console.log(input)
     }
     if (listItem && listItem.type === 'text') {
-      console.log(listItem)
+      return setFromStop(listItem.id)
     }
     return null
   }
