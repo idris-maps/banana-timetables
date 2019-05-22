@@ -19,3 +19,18 @@ export const toWeekDayName = date => {
     case 6: return 'Saturday'
   }
 }
+
+export const getLabel = (date, index) => {
+  if (index === 0) { return 'Today' }
+  if (index === 1) { return 'Tomorrow' }
+  return toWeekDayName(date)
+}
+
+export const getDaysList = () => 
+  Array.from(Array(7))
+    .map((d, i) => addDays(new Date(), i))
+    .map((d, i) => ({
+      type: 'text',
+      label: getLabel(d, i),
+      day: dateToYYYYMMDD(d),
+    }))

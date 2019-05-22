@@ -1,8 +1,10 @@
 import store from './index'
 import {
   PAGE_TO,
+  PAGE_CHOOSE_DAY,
 } from '../pages/names'
 import { getStops } from '../utils/db'
+import { getDaysList } from '../utils/date'
 
 const stopToListItem = ({ id, name }) => ({
   type: 'text',
@@ -33,5 +35,7 @@ export const setFromStop = stopId => {
 }
 
 export const SET_TO = 'SET_TO'
-export const setToStop = stopId =>
+export const setToStop = stopId => {
   store.dispatch({ type: SET_TO, payload: stopId })
+  goToPage(PAGE_CHOOSE_DAY, getDaysList())
+}

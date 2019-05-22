@@ -5,6 +5,7 @@ import {
   PAGE_CHOOSE_FROM,
   PAGE_CHOOSE_TO,
   LOADING,
+  PAGE_CHOOSE_DAY,
 } from './names'
 
 import PickStop from './PickStop'
@@ -16,6 +17,7 @@ const Router = ({ page }) => {
     case LOADING: return <Loading />
     case PAGE_CHOOSE_TO: return <PickStop title="TO" />
     case PAGE_CHOOSE_FROM: return <PickStop title="FROM" />
+    case PAGE_CHOOSE_DAY: return <PickStop title="DAY" />
     default: return <PickStop title="FROM" />
   }
 }
