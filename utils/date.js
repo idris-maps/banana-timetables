@@ -34,3 +34,8 @@ export const getDaysList = () =>
       label: getLabel(d, i),
       day: dateToYYYYMMDD(d),
     }))
+
+export const getTime = datestring => {
+  const d = new Date(datestring)
+  return `${d.getHours()}:${d.getMinutes()}`
+}
