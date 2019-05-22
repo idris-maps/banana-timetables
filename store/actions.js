@@ -62,6 +62,10 @@ export const setTime = time => {
   store.dispatch({ type: SET_TIME, payload: `${h1}${h2}:${m1}${m2}` })
 }
 
+export const SET_CONNECTIONS = 'SET_CONNECTIONS'
+export const setConnections = connections =>
+  store.dispatch({ type: SET_CONNECTIONS, payload: connections })
+
 export const findStop = nextPage => {
   const search = store.getState().input
   goToPage(LOADING)
@@ -76,8 +80,8 @@ export const findConnections = () => {
   const { from, to, day, time } = store.getState()
   goToPage(LOADING)
   searchConnections(from, to, day, time)
-    .then(connections => goToPage(
-      PAGE_CONNECTIONS,
-      connections.map(connectionToListItem)
-    ))
+    .then(connections => {
+      setConnections(connections)
+      goToPage(PAGE_CONNECTIONS, connections.map(connectionToListItem))
+    })
 }
