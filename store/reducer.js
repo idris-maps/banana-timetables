@@ -7,6 +7,7 @@ import {
   SET_PAGE,
   SET_FROM,
   SET_TO,
+  SET_DAY,
 } from './actions'
 import {
   PAGE_FROM,
@@ -35,6 +36,7 @@ const reducer = (state = defaultState, action) => {
     }
     case SET_FROM: return { ...state, from: payload }
     case SET_TO: return { ...state, to: payload }
+    case SET_DAY: return { ...state, day: payload }
     default: return state
   }
 }

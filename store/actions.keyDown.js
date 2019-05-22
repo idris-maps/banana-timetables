@@ -3,6 +3,7 @@ import {
   setList,
   setFromStop,
   setToStop,
+  setDay,
   goToPage,
 } from './actions'
 import {
@@ -11,6 +12,7 @@ import {
   PAGE_CHOOSE_FROM,
   PAGE_TO,
   PAGE_CHOOSE_TO,
+  PAGE_CHOOSE_DAY,
 } from '../pages/names'
 import {
   searchStop,
@@ -83,6 +85,11 @@ const onEnter = (input, listItem, page) => {
         .then(() => setToStop(listItem.id))
     }
     return null
+  }
+  if (page === PAGE_CHOOSE_DAY) {
+    if (listItem && listItem.type === 'text') {
+      return setDay(listItem.day)
+    }
   }
   return null
 }
