@@ -1,9 +1,11 @@
 import store from './index'
 import {
+  LOADING,
   PAGE_TO,
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
 } from '../pages/names'
+import { searchStop } from '../utils/api'
 import { getStops } from '../utils/db'
 import { getDaysList } from '../utils/date'
 
@@ -45,4 +47,20 @@ export const SET_DAY = 'SET_DAY'
 export const setDay = day => {
   store.dispatch({ type: SET_DAY, payload: day })
   goToPage(PAGE_CHOOSE_TIME, [{ type: 'text', label: 'Now' }, input])
+}
+
+export const SET_TIME = 'SET_TIME'
+export const setTime = time => {
+  const [h1, h2, m1, m2] = Array.from(time)
+  store.dispatch({ type: SET_TIME, payload: `${h1}${h2}:${m1}${m2}` })
+}
+
+export const findStop = nextPage => {
+  const search = store.getState().input
+  goToPage(LOADING)
+  searchStop(search)
+    .then(stops => goToPage(
+      nextPage,
+      stops.map(d => ({ ...d, type: 'text', label: d.name }))
+    ))
 }

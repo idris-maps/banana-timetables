@@ -1,10 +1,11 @@
 import store from './index'
 import {
-  setList,
   setFromStop,
   setToStop,
   setDay,
   goToPage,
+  setTime,
+  findStop,
 } from './actions'
 import {
   PAGE_FROM,
@@ -13,10 +14,8 @@ import {
   PAGE_TO,
   PAGE_CHOOSE_TO,
   PAGE_CHOOSE_DAY,
+  PAGE_CHOOSE_TIME,
 } from '../pages/names'
-import {
-  searchStop,
-} from '../utils/api'
 import {
   addStop,
 } from '../utils/db'
@@ -46,12 +45,7 @@ const onUp = (list, current = 0) => {
 const onEnter = (input, listItem, page) => {
   if (page === PAGE_FROM) {
     if (listItem && listItem.type === 'input') {
-      goToPage(LOADING)
-      searchStop(input)
-        .then(stops => goToPage(
-          PAGE_CHOOSE_FROM,
-          stops.map(d => ({ ...d, type: 'text', label: d.name }))
-        ))
+      findStop(PAGE_CHOOSE_FROM)
     }
     if (listItem && listItem.type === 'text') {
       return setFromStop(listItem.id)
@@ -67,12 +61,7 @@ const onEnter = (input, listItem, page) => {
   }
   if (page === PAGE_TO) {
     if (listItem && listItem.type === 'input') {
-      goToPage(LOADING)
-      searchStop(input)
-        .then(stops => goToPage(
-          PAGE_CHOOSE_TO,
-          stops.map(d => ({ ...d, type: 'text', label: d.name }))
-        ))
+      findStop(PAGE_CHOOSE_TO)
     }
     if (listItem && listItem.type === 'text') {
       return setToStop(listItem.id)
@@ -89,6 +78,17 @@ const onEnter = (input, listItem, page) => {
   if (page === PAGE_CHOOSE_DAY) {
     if (listItem && listItem.type === 'text') {
       return setDay(listItem.day)
+    }
+  }
+  if (page === PAGE_CHOOSE_TIME) {
+    if (listItem && listItem.type === 'text') {
+      // send request
+    }
+    if (listItem && listItem.type === 'input') {
+      if (/^([0-9]|0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$/.test(input)) {
+        setTime(input)
+        // send request
+      }
     }
   }
   return null
