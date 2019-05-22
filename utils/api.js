@@ -18,7 +18,7 @@ const parseConnection = ({ from, to, sections }) => ({
   departure: getTime(from.departure),
   arrival: getTime(to.arrival),
   changes: sections.length - 1,
-  details: sections.map(parseSection)
+  details: sections.filter(d => d.journey).map(parseSection)
 })
 
 export const searchConnections = (from, to, date, time) => {

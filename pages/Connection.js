@@ -13,14 +13,13 @@ const getDetails = (connections, index) => {
 const Connection = ({
   connections,
   connectionIndex,
-}) => {
-  console.log({ connections, connectionIndex })
-  return <div>
+}) => 
+  <div>
     <Header title="DETAILS" />
     <ConnectionDetails details={ getDetails(connections, connectionIndex) } />
     <Footer center="Back" />
   </div>
-}
+
 const mapStateToProps = (({
   connections,
   connectionIndex,
