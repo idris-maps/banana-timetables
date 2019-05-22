@@ -4,8 +4,9 @@ import {
   PAGE_TO,
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
+  PAGE_CONNECTIONS,
 } from '../pages/names'
-import { searchStop } from '../utils/api'
+import { searchStop, searchConnections } from '../utils/api'
 import { getStops } from '../utils/db'
 import { getDaysList } from '../utils/date'
 
@@ -13,6 +14,12 @@ const stopToListItem = ({ id, name }) => ({
   type: 'text',
   label: name,
   id,
+})
+
+const connectionToListItem = d => ({
+  ...d,
+  type: 'text',
+  label: `${d.departure} - ${d.arrival} ${d.change > 0 ? 'changes: ' + d.change : ''}`,
 })
 
 const input = { type: 'input', onChange: e => setInput(e.target.value) }
@@ -62,5 +69,15 @@ export const findStop = nextPage => {
     .then(stops => goToPage(
       nextPage,
       stops.map(d => ({ ...d, type: 'text', label: d.name }))
+    ))
+}
+
+export const findConnections = () => {
+  const { from, to, day, time } = store.getState()
+  goToPage(LOADING)
+  searchConnections(from, to, day, time)
+    .then(connections => goToPage(
+      PAGE_CONNECTIONS,
+      connections.map(connectionToListItem)
     ))
 }

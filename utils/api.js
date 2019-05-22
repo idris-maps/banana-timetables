@@ -21,7 +21,7 @@ const parseConnection = ({ from, to, sections }) => ({
   details: sections.map(parseSection)
 })
 
-export const getConnections = (from, to, date, time) => {
+export const searchConnections = (from, to, date, time) => {
   const url = time
     ? `http://transport.opendata.ch/v1/connections?from=${from}&to=${to}&date=${date}&time=${time}`
     : `http://transport.opendata.ch/v1/connections?from=${from}&to=${to}&date=${date}`

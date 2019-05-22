@@ -37,5 +37,7 @@ export const getDaysList = () =>
 
 export const getTime = datestring => {
   const d = new Date(datestring)
-  return `${d.getHours()}:${d.getMinutes()}`
+  const h = d.getHours()
+  const m = d.getMinutes()
+  return `${h < 10 ? `0${h}` : h }:${ m < 10 ? `0${m}` : m }`
 }

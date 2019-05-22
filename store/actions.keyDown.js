@@ -6,6 +6,7 @@ import {
   goToPage,
   setTime,
   findStop,
+  findConnections,
 } from './actions'
 import {
   PAGE_FROM,
@@ -82,12 +83,12 @@ const onEnter = (input, listItem, page) => {
   }
   if (page === PAGE_CHOOSE_TIME) {
     if (listItem && listItem.type === 'text') {
-      // send request
+      return findConnections()
     }
     if (listItem && listItem.type === 'input') {
       if (/^([0-9]|0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$/.test(input)) {
         setTime(input)
-        // send request
+        return findConnections()
       }
     }
   }
