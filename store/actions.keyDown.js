@@ -3,19 +3,19 @@ import {
   setFromStop,
   setToStop,
   setDay,
-  goToPage,
   setTime,
   findStop,
   findConnections,
+  setConnectionIndex,
 } from './actions'
 import {
   PAGE_FROM,
-  LOADING,
   PAGE_CHOOSE_FROM,
   PAGE_TO,
   PAGE_CHOOSE_TO,
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
+  PAGE_CONNECTIONS,
 } from '../pages/names'
 import {
   addStop,
@@ -90,6 +90,11 @@ const onEnter = (input, listItem, page) => {
         setTime(input)
         return findConnections()
       }
+    }
+  }
+  if (page === PAGE_CONNECTIONS) {
+    if (listItem && listItem.type === 'text') {
+      setConnectionIndex()
     }
   }
   return null

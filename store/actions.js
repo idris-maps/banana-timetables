@@ -5,6 +5,7 @@ import {
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
   PAGE_CONNECTIONS,
+  PAGE_CONNECTION_DETAIL,
 } from '../pages/names'
 import { searchStop, searchConnections } from '../utils/api'
 import { getStops } from '../utils/db'
@@ -65,6 +66,12 @@ export const setTime = time => {
 export const SET_CONNECTIONS = 'SET_CONNECTIONS'
 export const setConnections = connections =>
   store.dispatch({ type: SET_CONNECTIONS, payload: connections })
+
+export const SET_CONNECTION_INDEX = 'SET_CONNECTION_INDEX'
+export const setConnectionIndex = index => {
+  store.dispatch({ type: SET_CONNECTION_INDEX })
+  goToPage(PAGE_CONNECTION_DETAIL)
+}
 
 export const findStop = nextPage => {
   const search = store.getState().input
