@@ -7,7 +7,8 @@ export const searchStop = stop =>
   get(`${baseUrl}/locations?query=${stop}`)
     .then(res => res.stations.map(({ id, name }) => ({ id, name })))
 
-const parseSection = ({ departure, arrival }) => ({
+const parseSection = ({ departure, arrival, journey }) => ({
+  description: [journey.operator, journey.number, journey.name].filter(Boolean).join(' - '),
   departureStop: departure.station.name,
   departureTime: getTime(departure.departure),
   arrivalStop: arrival.station.name,

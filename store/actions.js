@@ -92,3 +92,8 @@ export const findConnections = () => {
       goToPage(PAGE_CONNECTIONS, connections.map(connectionToListItem))
     })
 }
+
+export const goBackToConnections = () =>  {
+  const { connections } = store.getState()
+  goToPage(PAGE_CONNECTIONS, connections.map(connectionToListItem))
+}

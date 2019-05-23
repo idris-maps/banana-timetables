@@ -42,7 +42,7 @@ const reducer = (state = defaultState, action) => {
     case SET_DAY: return { ...state, day: payload }
     case SET_TIME: return { ...state, time: payload }
     case SET_CONNECTIONS: return { ...state, connections: payload }
-    case SET_CONNECTION_INDEX: return { ...state, connectionIndex: state.listCurrent }
+    case SET_CONNECTION_INDEX: return { ...state, connectionIndex: state.listCurrent || 0 }
     default: return state
   }
 }

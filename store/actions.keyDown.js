@@ -7,6 +7,7 @@ import {
   findStop,
   findConnections,
   setConnectionIndex,
+  goBackToConnections,
 } from './actions'
 import {
   PAGE_FROM,
@@ -16,12 +17,15 @@ import {
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
   PAGE_CONNECTIONS,
+  PAGE_CONNECTION_DETAIL,
 } from '../pages/names'
 import {
   addStop,
 } from '../utils/db'
 
 export const SET_LIST_CURRENT = 'SET_LIST_CURRENT'
+const softKeyRight = 'AltGraph' // TODO
+const softKeyLeft = '§' // TODO
 
 const onDown = (list, current = 0) => {
   if (list && list.length !== 0) {
@@ -94,8 +98,11 @@ const onEnter = (input, listItem, page) => {
   }
   if (page === PAGE_CONNECTIONS) {
     if (listItem && listItem.type === 'text') {
-      setConnectionIndex()
+      return setConnectionIndex()
     }
+  }
+  if (page === PAGE_CONNECTION_DETAIL) {
+    return goBackToConnections()
   }
   return null
 }
@@ -106,6 +113,8 @@ export const onKeyDown = ({ key }) => {
     case 'ArrowDown': return onDown(list, listCurrent)
     case 'ArrowUp': return onUp(list, listCurrent)
     case 'Enter': return onEnter(input, list[listCurrent], page)
+    case softKeyLeft: return onSoftLeft()
+    case softKeyRight: return onSoftRight()
     default: return null
   }
 }
