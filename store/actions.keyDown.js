@@ -8,6 +8,7 @@ import {
   findConnections,
   setConnectionIndex,
   goBackToConnections,
+  deleteCachedStop,
 } from './actions'
 import {
   PAGE_FROM,
@@ -107,14 +108,22 @@ const onEnter = (input, listItem, page) => {
   return null
 }
 
+const onSoftLeft = (listItem, page) => {
+  if (page === PAGE_FROM || page === PAGE_TO) {
+    if (listItem && listItem.type === 'text') {
+      return deleteCachedStop(page, listItem)
+    }
+  }
+}
+
 export const onKeyDown = ({ key }) => {
   const { list, listCurrent, input, page } = store.getState()
   switch (key) {
     case 'ArrowDown': return onDown(list, listCurrent)
     case 'ArrowUp': return onUp(list, listCurrent)
     case 'Enter': return onEnter(input, list[listCurrent], page)
-    case softKeyLeft: return onSoftLeft()
-    case softKeyRight: return onSoftRight()
+    case softKeyLeft: return onSoftLeft(list[listCurrent], page)
+    case softKeyRight: return onSoftRight(list[listCurrent], page)
     default: return null
   }
 }

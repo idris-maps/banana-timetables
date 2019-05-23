@@ -13,7 +13,7 @@ const currentIsInput = (list, listCurrent) => {
 const RenderFooter = ({ currentIsInput }) =>
   currentIsInput
     ? <Footer center="Search" />
-    : <Footer center="Select" />
+    : <Footer left="Delete" center="Select" />
 
 const PickStop = ({
   list,

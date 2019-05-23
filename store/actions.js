@@ -8,7 +8,7 @@ import {
   PAGE_CONNECTION_DETAIL,
 } from '../pages/names'
 import { searchStop, searchConnections } from '../utils/api'
-import { getStops } from '../utils/db'
+import { getStops, deleteStop } from '../utils/db'
 import { getDaysList } from '../utils/date'
 
 const stopToListItem = ({ id, name }) => ({
@@ -68,7 +68,7 @@ export const setConnections = connections =>
   store.dispatch({ type: SET_CONNECTIONS, payload: connections })
 
 export const SET_CONNECTION_INDEX = 'SET_CONNECTION_INDEX'
-export const setConnectionIndex = index => {
+export const setConnectionIndex = () => {
   store.dispatch({ type: SET_CONNECTION_INDEX })
   goToPage(PAGE_CONNECTION_DETAIL)
 }
@@ -96,4 +96,16 @@ export const findConnections = () => {
 export const goBackToConnections = () =>  {
   const { connections } = store.getState()
   goToPage(PAGE_CONNECTIONS, connections.map(connectionToListItem))
+}
+
+export const deleteCachedStop = (page, { id }) => {
+  goToPage(LOADING)
+  deleteStop(id)
+    .then(stops => goToPage(page, [input, ...stops.map(stopToListItem)]))
+    .catch(err => {
+      console.log(err)
+      return getStops()
+      .then(stops => stops.map(stopToListItem))
+      .then(stops => goToPage(page, [input, ...stops.filter(d => d.id !== stopId)]))
+    })
 }
