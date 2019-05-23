@@ -4,6 +4,7 @@ import { connect } from 'preact-redux'
 import List from '../components/List'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Spacer from '../components/Spacer'
 
 const currentIsInput = (list, listCurrent) => {
   const current = list[listCurrent]
@@ -23,6 +24,7 @@ const PickStop = ({
   <div>
     <Header title={ title } />
     <List items={ list } current={ listCurrent } />
+    <Spacer height="3em" />
     <RenderFooter currentIsInput={ currentIsInput(list, listCurrent) } />
   </div>
 

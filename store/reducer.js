@@ -1,8 +1,8 @@
 import {
   SET_LIST_CURRENT,
-  RESET,
 } from './actions.keyDown'
 import {
+  RESET,
   SET_CONNECTIONS,
   SET_CONNECTION_INDEX,
   SET_DAY,
