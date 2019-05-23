@@ -96,11 +96,12 @@ header > h1 {
 /* CONNECTION SECTION */
 
 .section {
-	padding: 0.5em;
+	margin-left: 1em;
+	font-size: 0.8em;
 }
 
-.section > h1 {
-	font-size: 0.9em;
+.section-description {
+	font-size: 0.6em;
 }
 
 .section-time {
