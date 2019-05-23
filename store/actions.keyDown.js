@@ -9,6 +9,7 @@ import {
   setConnectionIndex,
   goBackToConnections,
   deleteCachedStop,
+  reset,
 } from './actions'
 import {
   PAGE_FROM,
@@ -25,8 +26,6 @@ import {
 } from '../utils/db'
 
 export const SET_LIST_CURRENT = 'SET_LIST_CURRENT'
-const softKeyRight = 'AltGraph' // TODO
-const softKeyLeft = '§' // TODO
 
 const onDown = (list, current = 0) => {
   if (list && list.length !== 0) {
@@ -114,6 +113,9 @@ const onSoftLeft = (listItem, page) => {
       return deleteCachedStop(page, listItem)
     }
   }
+  if (page === PAGE_CONNECTIONS) {
+    return reset()
+  }
 }
 
 export const onKeyDown = ({ key }) => {
@@ -122,8 +124,7 @@ export const onKeyDown = ({ key }) => {
     case 'ArrowDown': return onDown(list, listCurrent)
     case 'ArrowUp': return onUp(list, listCurrent)
     case 'Enter': return onEnter(input, list[listCurrent], page)
-    case softKeyLeft: return onSoftLeft(list[listCurrent], page)
-    case softKeyRight: return onSoftRight(list[listCurrent], page)
+    case '§': return onSoftLeft(list[listCurrent], page)
     default: return null
   }
 }

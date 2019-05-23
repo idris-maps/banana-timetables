@@ -3,6 +3,7 @@ import { Component } from 'preact'
 import { Provider } from 'preact-redux'
 import store from './store'
 
+import { reset } from './store/actions'
 import { onKeyDown } from './store/actions.keyDown'
 import onLoad from './store/actions.onLoad'
 
@@ -18,5 +19,5 @@ export default class App extends Component {
 	}
 }
 
-window.addEventListener('load', onLoad)
+window.addEventListener('load', reset)
 window.addEventListener('keydown', onKeyDown)

@@ -8,9 +8,11 @@ import {
   PAGE_CHOOSE_DAY,
   PAGE_CONNECTIONS,
   PAGE_CONNECTION_DETAIL,
+  PAGE_CHOOSE_TIME,
 } from './names'
 
 import PickStop from './PickStop'
+import Pick from './Pick'
 import Loading from './Loading'
 import Connection from './Connection'
 
@@ -20,8 +22,9 @@ const Router = ({ page }) => {
     case LOADING: return <Loading />
     case PAGE_CHOOSE_TO: return <PickStop title="TO" />
     case PAGE_CHOOSE_FROM: return <PickStop title="FROM" />
-    case PAGE_CHOOSE_DAY: return <PickStop title="DAY" />
-    case PAGE_CONNECTIONS: return <PickStop title="CONNECTIONS" />
+    case PAGE_CHOOSE_DAY: return <Pick title="DAY" />
+    case PAGE_CHOOSE_TIME: return <Pick title="TIME" />
+    case PAGE_CONNECTIONS: return <Pick title="CONNECTIONS" linkNewSearch={true} />
     case PAGE_CONNECTION_DETAIL: return <Connection />
     default: return <PickStop title="FROM" />
   }

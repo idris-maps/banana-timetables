@@ -2,6 +2,7 @@ import store from './index'
 import {
   LOADING,
   PAGE_TO,
+  PAGE_FROM,
   PAGE_CHOOSE_DAY,
   PAGE_CHOOSE_TIME,
   PAGE_CONNECTIONS,
@@ -71,6 +72,14 @@ export const SET_CONNECTION_INDEX = 'SET_CONNECTION_INDEX'
 export const setConnectionIndex = () => {
   store.dispatch({ type: SET_CONNECTION_INDEX })
   goToPage(PAGE_CONNECTION_DETAIL)
+}
+
+export const RESET = 'RESET'
+export const reset = () => {
+  store.dispatch({ type: RESET })
+  goToPage(LOADING)
+  getStops()
+    .then(stops => goToPage(PAGE_FROM, [input, ...stops.map(stopToListItem)]))
 }
 
 export const findStop = nextPage => {

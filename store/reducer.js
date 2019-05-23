@@ -1,5 +1,6 @@
 import {
   SET_LIST_CURRENT,
+  RESET,
 } from './actions.keyDown'
 import {
   SET_LIST,
@@ -43,6 +44,7 @@ const reducer = (state = defaultState, action) => {
     case SET_TIME: return { ...state, time: payload }
     case SET_CONNECTIONS: return { ...state, connections: payload }
     case SET_CONNECTION_INDEX: return { ...state, connectionIndex: state.listCurrent || 0 }
+    case RESET: return defaultState
     default: return state
   }
 }
