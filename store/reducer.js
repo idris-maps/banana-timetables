@@ -3,19 +3,19 @@ import {
   RESET,
 } from './actions.keyDown'
 import {
-  SET_LIST,
-  SET_INPUT,
-  SET_PAGE,
-  SET_FROM,
-  SET_TO,
-  SET_DAY,
-  SET_TIME,
   SET_CONNECTIONS,
   SET_CONNECTION_INDEX,
+  SET_DAY,
+  SET_FROM,
+  SET_INPUT,
+  SET_LIST,
+  SET_PAGE,
+  SET_TIME,
+  SET_TO,
 } from './actions'
 import {
   PAGE_FROM,
-} from '../pages/names';
+} from '../pages/names'
 
 const defaultState = {
   listCurrent: 0,
@@ -26,7 +26,6 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
   const { type, payload } = action
-  console.log({ type, payload })
   switch(type) {
     case SET_LIST_CURRENT: return { ...state, listCurrent: payload }
     case SET_LIST: return { ...state, list: payload }

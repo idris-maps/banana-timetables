@@ -111,10 +111,7 @@ export const deleteCachedStop = (page, { id }) => {
   goToPage(LOADING)
   deleteStop(id)
     .then(stops => goToPage(page, [input, ...stops.map(stopToListItem)]))
-    .catch(err => {
-      console.log(err)
-      return getStops()
+    .catch(err => getStops()
       .then(stops => stops.map(stopToListItem))
-      .then(stops => goToPage(page, [input, ...stops.filter(d => d.id !== stopId)]))
-    })
+      .then(stops => goToPage(page, [input, ...stops.filter(d => d.id !== stopId)])))
 }

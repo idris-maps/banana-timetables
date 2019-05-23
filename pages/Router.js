@@ -1,14 +1,14 @@
 import { h } from 'preact'
 import { connect } from 'preact-redux'
 import {
-  PAGE_TO,
-  PAGE_CHOOSE_FROM,
-  PAGE_CHOOSE_TO,
   LOADING,
   PAGE_CHOOSE_DAY,
+  PAGE_CHOOSE_FROM,
+  PAGE_CHOOSE_TIME,
+  PAGE_CHOOSE_TO,
   PAGE_CONNECTIONS,
   PAGE_CONNECTION_DETAIL,
-  PAGE_CHOOSE_TIME,
+  PAGE_TO,
 } from './names'
 
 import PickStop from './PickStop'

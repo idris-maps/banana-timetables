@@ -1,25 +1,25 @@
 import store from './index'
 import {
-  setFromStop,
-  setToStop,
-  setDay,
-  setTime,
-  findStop,
-  findConnections,
-  setConnectionIndex,
-  goBackToConnections,
   deleteCachedStop,
+  findConnections,
+  findStop,
+  goBackToConnections,
+  setConnectionIndex,
+  setDay,
+  setFromStop,
+  setTime,
+  setToStop,
   reset,
 } from './actions'
 import {
-  PAGE_FROM,
-  PAGE_CHOOSE_FROM,
-  PAGE_TO,
-  PAGE_CHOOSE_TO,
   PAGE_CHOOSE_DAY,
+  PAGE_CHOOSE_FROM,
   PAGE_CHOOSE_TIME,
+  PAGE_CHOOSE_TO,
   PAGE_CONNECTIONS,
   PAGE_CONNECTION_DETAIL,
+  PAGE_FROM,
+  PAGE_TO,
 } from '../pages/names'
 import {
   addStop,
@@ -95,11 +95,13 @@ const onEnter = (input, listItem, page) => {
         return findConnections()
       }
     }
+    return null
   }
   if (page === PAGE_CONNECTIONS) {
     if (listItem && listItem.type === 'text') {
       return setConnectionIndex()
     }
+    return null
   }
   if (page === PAGE_CONNECTION_DETAIL) {
     return goBackToConnections()
@@ -124,7 +126,8 @@ export const onKeyDown = ({ key }) => {
     case 'ArrowDown': return onDown(list, listCurrent)
     case 'ArrowUp': return onUp(list, listCurrent)
     case 'Enter': return onEnter(input, list[listCurrent], page)
-    case '§': return onSoftLeft(list[listCurrent], page)
+    case 'SoftLeft': return onSoftLeft(list[listCurrent], page)
+    case '§': return onSoftLeft(list[listCurrent], page) // for dev
     default: return null
   }
 }

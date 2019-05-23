@@ -5,7 +5,6 @@ import store from './store'
 
 import { reset } from './store/actions'
 import { onKeyDown } from './store/actions.keyDown'
-import onLoad from './store/actions.onLoad'
 
 import Router from './pages/Router'
 
