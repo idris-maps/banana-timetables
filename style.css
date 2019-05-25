@@ -96,6 +96,10 @@ header > h1 {
 	text-align: center;
 }
 
+#loader > img {
+	max-width: 80%;
+}
+
 /* CONNECTION SECTION */
 
 .section {
@@ -112,6 +116,5 @@ header > h1 {
 }
 
 .section-stop {
-	margin-left: 1em;
 	font-size: 0.9em;
 }
