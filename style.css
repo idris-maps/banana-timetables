@@ -7,6 +7,8 @@ html, body {
 	margin: 0;
 	width: 100%;
 	font-size: 1rem;
+	background-color: black;
+	color: white;
 }
 
 h1 {
@@ -34,7 +36,7 @@ input.list-item {
 }
 
 .list-item:focus {
-	background-color: black;
+	background-color: #d40000;
 	color: white;
 }
 
@@ -47,6 +49,7 @@ footer {
 	left: 0px;
 	width: 100%;
 	background-color: lightgray;
+	color: black;
 	font-weight: bold;
 	font-size: 0.9rem;
 }
@@ -75,7 +78,7 @@ header {
 	padding: 0.3rem;
 	width: 100%;
 	text-align: center;
-	background-color: black;
+	background-color: #d40000;
 	color: white;
 }
 
