@@ -19,9 +19,12 @@ export const getStops = () =>
       return stops
     })
 
+const sortByName = arr =>
+  arr.sort((a, b) => a.name > b.name ? 1 : -1)
+
 export const addStop = (id, name) =>
   getStops()
-    .then(stops => setStops([...stops, { id, name }]))
+    .then(stops => setStops(sortByName([...stops, { id, name }])))
     .then(() => getStops())
 
 export const deleteStop = id =>
