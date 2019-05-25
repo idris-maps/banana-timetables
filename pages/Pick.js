@@ -10,13 +10,14 @@ const Pick = ({
   list,
   listCurrent,
   title,
+  center,
   linkNewSearch,
 }) =>
   <div>
     <Header title={ title } />
     <List items={ list } current={ listCurrent } />
     <Spacer height="3em" />
-    <Footer left={ linkNewSearch ? 'New' : '' } center="Select" />
+    <Footer left={ linkNewSearch ? 'New' : '' } center={ center || 'Select' } />
   </div>
 
 const mapStateToProps = (({

@@ -24,7 +24,7 @@ const Router = ({ page }) => {
     case PAGE_CHOOSE_FROM: return <PickStop title="FROM" />
     case PAGE_CHOOSE_DAY: return <Pick title="DAY" />
     case PAGE_CHOOSE_TIME: return <Pick title="TIME" />
-    case PAGE_CONNECTIONS: return <Pick title="CONNECTIONS" linkNewSearch={true} />
+    case PAGE_CONNECTIONS: return <Pick title="CONNECTIONS" linkNewSearch={true} center="Details"/>
     case PAGE_CONNECTION_DETAIL: return <Connection />
     default: return <PickStop title="FROM" />
   }
